@@ -2,10 +2,6 @@
 import { pick, omit } from 'lodash';
 import { ExecutionContext } from '@nestjs/common';
 import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
-// import dayjs from 'dayjs';
-// import * as utc from 'dayjs/plugin/utc';
-// import * as timezone from 'dayjs/plugin/timezone';
-// import { IHttpMessages } from './interface';
 
 interface ObjectLodash {
   [key: string]: any;
@@ -130,47 +126,6 @@ export const convertRoom = (pros: Pros<any>): Pros<any> => {
   });
   return { ...pros };
 };
-
-// export const convertStringToObjectId = (id: string) => new Types.ObjectId(id);
-
-// export const isValidObjectIdMongo = (id: string) => Types.ObjectId.isValid(id);
-
-// export const convertDate = (
-//   date: Date | string | number | dayjs.Dayjs | undefined,
-//   hour = 0,
-//   minute = 0,
-// ) => {
-//   if (hour < 0) {
-//     return dayjs(date).toDate();
-//   }
-//   return dayjs(date)
-//     .tz('Asia/Ho_Chi_Minh')
-//     .set('hour', hour)
-//     .set('minute', minute)
-//     .toDate();
-// };
-
-// export const convertDateToNumber = (
-//   date: Date | string | number | dayjs.Dayjs | undefined,
-//   isMillisecond = true,
-//   hours = -1,
-// ) => {
-//   if (isMillisecond) {
-//     if (hours >= 0) {
-//       return dayjs(date)
-//         .tz('Asia/Ho_Chi_Minh')
-//         .set('hour', 10)
-//         .set('minute', 0)
-//         .valueOf();
-//     }
-//     return dayjs(date).tz('Asia/Ho_Chi_Minh').valueOf();
-//   }
-
-//   if (hours >= 0) {
-//     return dayjs(date).tz('Asia/Ho_Chi_Minh').set('hour', 10).set('minute', 0).unix();
-//   }
-//   return dayjs(date).tz('Asia/Ho_Chi_Minh').unix();
-// };
 
 export function getSwitchContext(context: ExecutionContext) {
   const ctxType = context.getType<GqlContextType>();

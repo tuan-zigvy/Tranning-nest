@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { DiscordModule } from '@discord-nestjs/core';
-import { LoggerDiscord } from './loggerDiscord';
+import { LoggerCustomService } from './logger.service';
 
 @Module({
-  imports: [DiscordModule.forFeature()],
-  exports: [LoggerDiscord],
-  providers: [LoggerDiscord],
+  exports: [LoggerCustomService],
+  providers: [LoggerCustomService],
 })
 export class LoggerModule {}

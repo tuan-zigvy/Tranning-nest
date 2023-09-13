@@ -1,9 +1,9 @@
 import { Resolver, Mutation, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { ATResponse, SignInSuccess, UpdateResponse } from '@utils/objectTypeGql';
-import { User } from '@user/entities/user.entity';
-import { ERegistrationType } from '@utils/enum';
-import { IPayloadToken } from '@utils/interface';
+import { User } from '@user/entities/User.entity';
+import { ATResponse, SignInSuccess, UpdateResponse } from '@/types/objectTypeGql';
+import { ERegistrationType } from '@/types/enum';
+import { IPayloadToken } from '@/types/base.interface';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { CreateUserDto } from './dto/create.dto';

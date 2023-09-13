@@ -1,11 +1,11 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { EKeyHeader } from '@utils/enum';
-import { IPayloadToken } from '@utils/interface';
 import authConfig from '@config/auth.config';
 
 import { Request } from 'express';
+import { IPayloadToken } from '@/types/base.interface';
+import { EKeyHeader } from '@/types/enum';
 import { RedisServiceCaching } from '@/redis/redis.service';
 
 @Injectable()

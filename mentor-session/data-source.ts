@@ -8,14 +8,12 @@ export const OrmConfig: DataSourceOptions = {
   port: parseInt(process.env.DB_PORT as string, 10),
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DB,
+  database: process.env.DB_NAME,
   entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['src/database/migrations/*{.ts,.js}'],
+  migrations: ['dist/src/database/migrations/*{.ts,.js}'],
   subscribers: ['dist/**/*.subscribers{.ts,.js}'],
   synchronize: true,
   logging: true,
 };
 
-const dataSource = new DataSource(OrmConfig);
-
-export default dataSource;
+export default new DataSource(OrmConfig);

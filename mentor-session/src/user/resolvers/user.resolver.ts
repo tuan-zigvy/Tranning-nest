@@ -11,17 +11,17 @@ import {
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '@guard/access_token.guard';
 import { RedisServiceCaching } from '@redis/redis.service';
-import { MentorPageResponse, UpdateResponse } from '@utils/objectTypeGql';
-import { IPayloadToken } from '@utils/interface';
 import { GetUser } from '@auth/decorator/user.decorator';
 import { Public } from '@auth/decorator/public.decorator';
-import { User } from '../entities/user.entity';
-import { UserService } from '../service/user.service';
+import { MentorPageResponse, UpdateResponse } from '@/types/objectTypeGql';
+import { IPayloadToken } from '@/types/base.interface';
+import { User } from '../entities/User.entity';
+import { UserService } from '../services/user.service';
 import { UpdateAllUserDto, UpdateUserDto, UpdatePsDto } from '../dto/user.dto';
-import { ProfileService } from '../service/profile.service';
-import { SettingService } from '../service/setting.service';
-import { Setting } from '../entities/setting.entity';
-import { Profile } from '../entities/profile.entity';
+import { ProfileService } from '../services/profile.service';
+import { SettingService } from '../services/setting.service';
+import { Setting } from '../entities/Setting.entity';
+import { Profile } from '../entities/Profile.entity';
 
 interface IMessageUpdate {
   message: string;

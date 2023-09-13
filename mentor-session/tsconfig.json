@@ -19,7 +19,9 @@
       "@utils/*": ["utils/*"],
       "@redis/*": ["redis/*"],
       "@config/*": ["config/*"],
-      "@auth/*": ["auth/*"]
-    }
+      "@auth/*": ["auth/*"],
+      "@types/*": ["types/*"]
+    },
+    "types": ["bun-types"]
   }
 }

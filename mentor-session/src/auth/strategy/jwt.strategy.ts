@@ -1,8 +1,8 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { EKeyHeader } from '@utils/enum';
-import { IPayloadToken } from '@utils/interface';
+import { IPayloadToken } from '@/types/base.interface';
+import { EKeyHeader } from '@/types/enum';
 import authConfig from '@/config/auth.config';
 
 @Injectable()

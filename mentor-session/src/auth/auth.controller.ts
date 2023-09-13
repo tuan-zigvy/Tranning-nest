@@ -1,9 +1,9 @@
 import { Controller, Res, Post, UseGuards, Body, Get } from '@nestjs/common';
-import { User } from '@user/entities/user.entity';
+import { User } from '@user/entities/User.entity';
 import { Response } from 'express';
-import { ERegistrationType } from '@utils/enum';
-import { IFacebookUser, IGoogleUser } from '@utils/interface';
 import authConfig from '@config/auth.config';
+import { ERegistrationType } from '@/types/enum';
+import { IFacebookUser, IGoogleUser } from '@/types/base.interface';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { CreateUserDto } from './dto/create.dto';

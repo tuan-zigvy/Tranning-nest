@@ -1,10 +1,10 @@
 import { Resolver, Mutation, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '@guard/access_token.guard';
-import { IForm, UpdateResponse } from '@utils/objectTypeGql';
-import { IPayloadToken } from '@utils/interface';
 import { GetUser } from '@auth/decorator/user.decorator';
-import { SettingService } from '../service/setting.service';
+import { IPayloadToken } from '@/types/base.interface';
+import { IForm, UpdateResponse } from '@/types/objectTypeGql';
+import { SettingService } from '../services/setting.service';
 import {
   InfoBookingTodoDto,
   UpdateFormBookingDto,

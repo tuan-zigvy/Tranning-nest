@@ -1,30 +1,33 @@
-import { BaseEntity, Repository } from 'typeorm';
-import { EntityId } from 'typeorm/repository/EntityId';
-import { IBaseService } from './utils/interface';
+/* eslint-disable max-classes-per-file */
+import { FindOptionsWhere, In, Repository } from 'typeorm';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import { IBaseService } from './types/base.interface';
+import { BaseEntityExtend } from './types/entity.interface';
 
-export default class BaseService<T extends BaseEntity> implements IBaseService<T> {
-  constructor(private readonly BaseRepository: Repository<T>) {}
+export default class BaseService<T extends BaseEntityExtend> implements IBaseService<T> {
+  constructor(private readonly baseRepository: Repository<T>) {}
 
   index() {
-    return this.BaseRepository.find();
+    return this.baseRepository.find();
   }
 
-  findById(id: EntityId) {
-    return this.BaseRepository.findOneById(id);
+  findById(id: T['id']): Promise<T | null> {
+    return this.baseRepository.findOneBy({ id } as FindOptionsWhere<T>);
   }
 
-  findByIds = (ids: EntityId[]) => this.BaseRepository.findByIds(ids);
+  findByIds = (ids: T['id'][]): Promise<T[]> =>
+    this.baseRepository.findBy({ id: In(ids) } as FindOptionsWhere<T>);
 
-  store(data: any) {
-    return this.BaseRepository.save(data);
+  store(data) {
+    return this.baseRepository.save(data);
   }
 
-  async update(id: EntityId, data: any) {
-    await this.BaseRepository.update(id, data);
+  async update(id: T['id'], data: QueryDeepPartialEntity<T>): Promise<T | null> {
+    await this.baseRepository.update(id as number, data);
     return this.findById(id);
   }
 
-  delete(id: EntityId) {
-    return this.BaseRepository.delete(id);
+  delete(id: T['id']) {
+    return this.baseRepository.delete(id as number);
   }
 }

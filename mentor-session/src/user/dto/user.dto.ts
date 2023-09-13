@@ -3,10 +3,10 @@
 
 import { createZodDto } from 'nestjs-zod';
 import { IMAGE_REGEX, PASSWORD_REGEX } from '@utils/regexUtil';
-import { ERole } from '@utils/enum';
 import { InputType, Field } from '@nestjs/graphql';
 
 import { z } from 'zod';
+import { ERole } from '@/types/enum';
 
 export const updateUserSchema = z
   .object({

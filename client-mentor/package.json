@@ -13,8 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
-    "@apollo/client": "^3.7.17",
-    "@graphql-codegen/cli": "^5.0.0",
+    "@apollo/client": "^3.8.3",
     "@hookform/resolvers": "^3.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "^20.3.1",
@@ -66,6 +65,6 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "prettier": "^2.8.8",
     "typescript": "^5.1.6",
-    "vite": "^4.4.5"
+    "vite": "^4.4.9"
   }
 }

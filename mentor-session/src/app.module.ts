@@ -16,8 +16,9 @@ import redisConfig from './config/redis.config';
 import { RolesGuard } from './auth/guard/roles.guard';
 import authConfig from './config/auth.config';
 import { RedisCachingModule } from './redis/redis.module';
-import { ICustomGraphQLError, IHttpMessages } from './utils/interface';
+import { ICustomGraphQLError, IHttpMessages } from './types/base.interface.js';
 import { DateScalar } from './utils/customGql.js';
+import { BoxChatModule } from './chat/boxChat.module.js';
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import { DateScalar } from './utils/customGql.js';
     UserModule,
     AuthModule,
     RedisCachingModule,
+    BoxChatModule,
   ],
   controllers: [],
   providers: [

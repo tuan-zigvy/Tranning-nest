@@ -1,11 +1,11 @@
-import * as argon2 from 'argon2';
+import * as bcrypt from 'bcrypt';
 
 function getHash(password: string): Promise<string> {
-  return argon2.hash(password);
+  return bcrypt.hash(password, 10);
 }
 
 function getCompare(password: string, hash: string): Promise<boolean> {
-  return argon2.verify(hash, password);
+  return bcrypt.compare(hash, password);
 }
 
 export default { getHash, getCompare };

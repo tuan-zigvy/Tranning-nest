@@ -1,13 +1,13 @@
 import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserService } from '@user/service/user.service';
-import { ERegistrationType, ERole } from '@utils/enum';
 
 import { ConfigService } from '@nestjs/config';
-import { User } from '@user/entities/user.entity';
-import { IFacebookUser, IGoogleUser, IPayloadToken } from '@utils/interface';
-// import { LoginDto } from './dto/login.dto';
+import { User } from '@user/entities/User.entity';
 import { RedisServiceCaching } from '@redis/redis.service';
+import { UserService } from '@/user/services/user.service';
+import { IFacebookUser, IGoogleUser, IPayloadToken } from '@/types/base.interface';
+// import { LoginDto } from './dto/login.dto';
+import { ERegistrationType, ERole } from '@/types/enum';
 import { CreateUserDto } from './dto/create.dto';
 
 @Injectable()
@@ -91,6 +91,17 @@ export class AuthService {
       throw new BadGatewayException('Sign up must have password');
     }
     await this.userService.store(user);
+    return 'Create user success';
+  }
+
+  async createUserByAdmin(user: CreateUserDto, type: ERegistrationType): Promise<string> {
+    // user.password = await argon.hash(user.password);
+    if (type !== 'password') {
+      throw new BadGatewayException('Sign up must have password');
+    }
+
+    await this.userService.store(user);
+
     return 'Create user success';
   }
 

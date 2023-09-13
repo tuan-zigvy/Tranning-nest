@@ -4,12 +4,13 @@ import {
   InsertEvent,
   UpdateEvent,
 } from 'typeorm';
-import * as argon from 'argon2';
-import { ERegistrationType } from '@utils/enum';
-import { IAvailability, IForm } from '@utils/interface';
-import { User } from '../entities/user.entity';
-import { Profile } from '../entities/profile.entity';
-import { Setting } from '../entities/setting.entity';
+
+import { ERegistrationType } from '@/types/enum';
+import { IAvailability, IForm } from '@/types/base.interface';
+import { User } from '../entities/User.entity';
+import { Profile } from '../entities/Profile.entity';
+import { Setting } from '../entities/Setting.entity';
+import pwdUtil from '@/utils/pwdUtil';
 
 const availabilityDefault: IAvailability = {
   duration_session: 2700,
@@ -36,13 +37,13 @@ export class UserSubscriber implements EntitySubscriberInterface<User> {
 
   async beforeInsert(event: InsertEvent<User>) {
     if (event.entity.registrationType.includes(ERegistrationType.PASSWORD)) {
-      event.entity.password = await argon.hash(event.entity.password);
+      event.entity.password = await pwdUtil.getHash(event.entity.password);
     }
   }
 
   async beforeUpdate(event: UpdateEvent<User>) {
     if (event.entity?.password && event.entity?.password < 21) {
-      event.entity.password = await argon.hash(event.entity.password);
+      event.entity.password = await pwdUtil.getHash(event.entity.password);
 
       if (!event.entity.registrationType.includes(ERegistrationType.PASSWORD)) {
         event.entity.registrationType = [

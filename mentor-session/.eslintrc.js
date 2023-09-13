@@ -43,5 +43,7 @@ module.exports = {
     'operator-linebreak': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'class-methods-use-this': 'off',
+    'import/extensions': 'off',
+    'import/no-cycle': 'off',
   },
 };

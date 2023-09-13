@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
 import { IMAGE_REGEX, PASSWORD_REGEX } from '@utils/regexUtil';
-import { ERegistrationType, ERole } from '@utils/enum';
 import { Field, InputType } from '@nestjs/graphql';
+import { ERegistrationType } from '@/types/enum';
 
 const createUserSchema = z
   .object({
@@ -12,7 +12,7 @@ const createUserSchema = z
     email: z.string().email(),
     avatar: z.string().regex(IMAGE_REGEX).optional(),
     major: z.array(z.string()),
-    role: z.array(z.enum([ERole.MENTEE, ERole.MENTOR])).optional(),
+    roles: z.array(z.string()),
     registrationType: z
       .array(
         z.enum([
@@ -46,5 +46,5 @@ export class CreateUserDto extends createZodDto(createUserSchema) {
   major: string[];
 
   @Field(() => [String])
-  roles: (ERole.MENTEE | ERole.MENTOR)[];
+  roles: string[];
 }
